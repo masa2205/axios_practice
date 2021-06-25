@@ -7,7 +7,9 @@
 
 <body>
     <div id="app">
-        <h1>{{ message }}</h1>
+        <ul>
+            <li v-for='user in users'>{{ user.name }}</li>
+        </ul>
     </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -17,7 +19,12 @@
 new Vue({
     el: '#app',
     data: {
-        message: 'Hello Axios'
+        users: []
+    },
+    mounted : function(){
+        axios.get('https://jsonplaceholder.typicode.com/users')
+            .then(response => this.users = response.data)
+            .catch(error => console.log(error))
     }
 })
 </script>
