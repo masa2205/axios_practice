@@ -22,7 +22,12 @@ new Vue({
         users: []
     },
     mounted : function(){
-        axios.get('https://jsonplaceholder.typicode.com/users')
+        axios.get('https://jsonplaceholder.typicode.com/users',
+        {
+            params: {
+                name: 'Glenna Reichert'
+            }
+        })
             .then(response => this.users = response.data)
             .catch(error => console.log(error))
     }
