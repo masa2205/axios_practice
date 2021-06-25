@@ -41,13 +41,11 @@ new Vue({
         }
     },
     mounted : function(){
-        axios.get('https://jsonplaceholder.typicode.com/users',
+        axios.patch('https://jsonplaceholder.typicode.com/users/1',
         {
-            params: {
-                name: 'Glenna Reichert'
-            }
+            name: 'John Doe'
         })
-            .then(response => this.users = response.data)
+            .then(response => this.users.unshift(response.data))
             .catch(error => console.log(error))
     }
 })
