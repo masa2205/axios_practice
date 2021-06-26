@@ -7,6 +7,7 @@
 
 <body>
     <div id="app">
+        <p v-show="errorFlag">サーバとの通信にエラーが発生しています</p>
         <input v-model="name"><br>
         <button @click="createNewUser">作成</button>
         <ul>
@@ -24,7 +25,8 @@ new Vue({
     el: '#app',
     data: {
         users: [],
-        name:''
+        name:'',
+        errorflag: false
     },
     methods: {
         createNewUser: function(){
@@ -46,7 +48,8 @@ new Vue({
             name: 'John Doe'
         })
             .then(response => this.users.unshift(response.data))
-            .catch(error => console.log(error))
+            .catch(error => console.log(error.response))
+            this.errorFlag = true
     }
 })
 </script>
