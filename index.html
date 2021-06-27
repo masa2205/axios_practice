@@ -6,7 +6,9 @@
 </head>
 <body>
 	<div id="app">
-		<hello-world></hello-world>
+		<button-counter></button-counter>
+		<button-counter></button-counter>
+		<button-counter></button-counter>
         <!-- <hello-view></hello-view> -->
 	</div>
     <!-- <div id="app2">
@@ -17,13 +19,20 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
 
-Vue.component('hello-world',{
-    template : '<h1>{{ message }}({{ message2 }})</h1>',
+Vue.component('button-counter',{
+    template : '<p>カウント:{{ count }}<button @click="countUp">Up</button><button @click="countDown">Down</button></p>',
     data: function(){
         return {
-            message:'Hello Vue',
-            message2:'Hello World'
+            count:0
         }
+    },
+    methods: {
+        countUp: function(){
+            this.count++
+        },
+        countDown: function(){
+            this.count--
+        },
     }
 })
 
