@@ -1,57 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <title>vueを使ってaxiosを学ぶ</title>
+	<meta charset="UTF-8">
+	<title>Component</title>
 </head>
-
 <body>
-    <div id="app">
-        <p v-show="errorFlag">サーバとの通信にエラーが発生しています</p>
-        <input v-model="name"><br>
-        <button @click="createNewUser">作成</button>
-        <ul>
-            <li v-for='user in users'>{{ user.name }}
-                <button @click="deleteUser(user.id)">削除</button>
-            </li>
-        </ul>
-    </div>
+	<div id="app">
+		<hello-world></hello-world>
+	</div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
 <script>
-new Vue({
+
+Vue.component('hello-world',{
+    template : '<h1>Hello World</h1>'
+})
+
+var app = new Vue({
     el: '#app',
     data: {
-        users: [],
-        name:'',
-        errorflag: false
-    },
-    methods: {
-        createNewUser: function(){
-            axios.post('https://jsonplaceholder.typicode.com/users',{
-                name:this.name
-            })
-            .then(response => this.users.unshift(response.data))
-            .catch(error => console.log(error))
-        },
-        deleteUser: function(id){
-            axios.delete('https://jsonplaceholder.typicode.com/users/' + id)
-                .then(response => console.log(response))
-                .catch(error => console.log(error))
-        }
-    },
-    mounted : function(){
-        axios.patch('https://jsonplaceholder.typicode.com/users/1',
-        {
-            name: 'John Doe'
-        })
-            .then(response => this.users.unshift(response.data))
-            .catch(error => console.log(error.response))
-            this.errorFlag = true
     }
 })
-</script>
+
+</script>	
 </body>
 </html>
