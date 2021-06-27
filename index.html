@@ -6,7 +6,8 @@
 </head>
 <body>
 	<div id="app">
-		<hello-world message="Hello Vue"></hello-world>
+        <input type="text" v-model="inputText">
+		<hello-world :message="inputText"></hello-world>
 	</div>
     
 
@@ -21,6 +22,7 @@ Vue.component('hello-world',{
 var app = new Vue({
     el: '#app',
     data: {
+        inputText:''
     },
 })
 
