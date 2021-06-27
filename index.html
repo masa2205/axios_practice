@@ -20,7 +20,15 @@
 <script>
 
 Vue.component('button-counter',{
-    template : '<p>カウント:{{ count }}<button @click="countUp">Up</button><button @click="countDown">Down</button></p>',
+    template : `<p>
+        カウント:{{ count }}
+        <button @click="countUp">
+        Up
+        </button>
+        <button @click="countDown">
+        Down
+        </button>
+        </p>`,
     data: function(){
         return {
             count:0
