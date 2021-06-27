@@ -6,26 +6,29 @@
 </head>
 <body>
 	<div id="app">
-        <input type="text" v-model="inputText">
-		<hello-world :message="inputText"></hello-world>
+        <blog-post v-for="post in posts" :key="post.id" :title="post.title" :content="post.content"></blog-post>
 	</div>
     
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
 
-Vue.component('hello-world',{
-    template : '<h1>Hello World and {{ message }}</h1>',
-    props: ['message']
+Vue.component('blog-post',{
+    template: '<div><h2>{{ title }}</h2><p>{{ content }}</p></div>',
+    props:['title','content']
 })
 
 var app = new Vue({
     el: '#app',
     data: {
-        inputText:''
+        posts: [
+            {'id':0, 'title': 'vue.jsの基礎', 'content': 'about vue.js...'},
+            {'id':1, 'title': 'componentの基礎', 'content': 'about component...'},
+            {'id':2, 'title': 'Vue CLIの基礎', 'content': 'about Vue CLI...'},
+        ]
     },
 })
 
-</script>	
+</script>
 </body>
 </html>
