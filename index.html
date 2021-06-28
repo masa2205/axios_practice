@@ -6,27 +6,31 @@
 </head>
 <body>
 	<div id="app">
-        <blog-post v-for="post in posts" :key="post.id" :title="post.title" :content="post.content"></blog-post>
+        <emit-event @from-child='alertMessage'></emit-event>
 	</div>
     
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
 
-Vue.component('blog-post',{
-    template: '<div><h2>{{ title }}</h2><p>{{ content }}</p></div>',
-    props:['title','content']
+Vue.component('emit-event',{
+    template: `<button @click="$emit('from-child')">ボタン</button>`,
+    // methods: {
+    //     clickEvent: function(){
+    //         this.$emit('from-child')
+    //     }
+    // }    
 })
 
 var app = new Vue({
     el: '#app',
     data: {
-        posts: [
-            {'id':0, 'title': 'vue.jsの基礎', 'content': 'about vue.js...'},
-            {'id':1, 'title': 'componentの基礎', 'content': 'about component...'},
-            {'id':2, 'title': 'Vue CLIの基礎', 'content': 'about Vue CLI...'},
-        ]
     },
+    methods: {
+        alertMessage: function(){
+            alert('子からイベント受け取ったよ')
+        }
+    }
 })
 
 </script>
