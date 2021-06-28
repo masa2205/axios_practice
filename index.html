@@ -6,7 +6,8 @@
 </head>
 <body>
 	<div id="app">
-        <emit-event @from-child='alertMessage'></emit-event>
+        <p>{{ message }}</p>
+        <emit-event @from-child='receiveMessage'></emit-event>
 	</div>
     
 
@@ -14,21 +15,30 @@
 <script>
 
 Vue.component('emit-event',{
-    template: `<button @click="$emit('from-child')">ボタン</button>`,
-    // methods: {
-    //     clickEvent: function(){
-    //         this.$emit('from-child')
-    //     }
-    // }    
+    template: `<div>
+        <input type="text" v-model="inputText">
+        <button v-on:click="clickEvent">送信ボタン</button>
+        </div>`,
+    data: function(){
+        return{
+            inputText:''
+        }
+    },
+    methods: {
+        clickEvent: function(){
+            this.$emit('from-child',this.inputText)
+        }
+    }    
 })
 
 var app = new Vue({
     el: '#app',
     data: {
+        message:''
     },
     methods: {
-        alertMessage: function(){
-            alert('子からイベント受け取ったよ')
+        receiveMessage: function(message){
+            this.message=message;
         }
     }
 })
