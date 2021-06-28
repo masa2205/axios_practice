@@ -7,6 +7,7 @@
 <body>
 	<div id="app">
         <slot-test>スロットによる挿入</slot-test>
+        <slot-test></slot-test>
 	</div>
     
 
@@ -14,7 +15,7 @@
 <script>
 
 Vue.component('slot-test',{
-    template: '<p><slot></slot><p>',
+    template: '<p><slot>デフォルト</slot><p>',
 })
 
 var app = new Vue({
